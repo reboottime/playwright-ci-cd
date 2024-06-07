@@ -1,9 +1,9 @@
-name: Playwright Tests
+name: End 2 End Test
 on:
   push:
-    branches: [main, master]
+    branches: [main]
   pull_request:
-    branches: [main, master]
+    branches: [main]
 jobs:
   test:
     timeout-minutes: 60
@@ -15,6 +15,10 @@ jobs:
           node-version: lts/*
       - name: Install dependencies
         run: npm install -g pnpm && pnpm install
+      - name: start react app locally
+        run: npm run start &
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:3000
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
       - name: Run Playwright tests
