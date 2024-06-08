@@ -22,7 +22,7 @@ jobs:
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
       - name: Run Playwright tests
-        run: PLAYWRIGHT_JSON_OUTPUT_NAME=results.json pnpm exec playwright test --reporter json
+        run: PLAYWRIGHT_JSON_OUTPUT_NAME=results.json pnpm exec playwright test --headed --reporter json
       - name: Playwright report comment
         uses: daun/playwright-report-summary@v3.3.0
         env:
